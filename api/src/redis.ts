@@ -1,20 +1,8 @@
-/*
- * SPDX-License-Identifier: Apache-2.0
- *
- * This sample uses the BullMQ queue system, which is built on top of Redis
- */
-
 import IORedis, { Redis, RedisOptions } from 'ioredis';
 
 import * as config from './config';
 import { logger } from './logger';
 
-/**
- * Check whether the maxmemory-policy config is set to noeviction
- *
- * BullMQ requires this setting in redis
- * For details, see: https://docs.bullmq.io/guide/connections
- */
 export const isMaxmemoryPolicyNoeviction = async (): Promise<boolean> => {
   let redis: Redis | undefined;
 

@@ -1,7 +1,3 @@
-/*
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import express, { Application, NextFunction, Request, Response } from 'express';
 import helmet from 'helmet';
 import { getReasonPhrase, StatusCodes } from 'http-status-codes';
@@ -42,19 +38,9 @@ export const createServer = async (): Promise<Application> => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  //define passport startegy
   passport.use(fabricAPIKeyStrategy);
 
-  //initialize passport js
   app.use(passport.initialize());
-
-  if (process.env.NODE_ENV === 'development') {
-    // TBC
-  }
-
-  if (process.env.NODE_ENV === 'test') {
-    // TBC
-  }
 
   if (process.env.NODE_ENV === 'production') {
     app.use(helmet());
@@ -65,7 +51,6 @@ export const createServer = async (): Promise<Application> => {
   app.use('/api/jobs', authenticateApiKey, jobsRouter);
   app.use('/api/transactions', authenticateApiKey, transactionsRouter);
 
-  // For everything else
   app.use((_req, res) =>
     res.status(NOT_FOUND).json({
       status: getReasonPhrase(NOT_FOUND),
@@ -73,7 +58,6 @@ export const createServer = async (): Promise<Application> => {
     })
   );
 
-  // Print API errors
   app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
     logger.error(err);
     return res.status(INTERNAL_SERVER_ERROR).json({
