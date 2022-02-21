@@ -5,20 +5,95 @@ import { Diagnosis } from './diagnosis';
 import { Insurance } from './insurance';
 import { Transaction as T } from './transaction';
 
-type Asset = Diagnosis | Insurance | T;
-
 export class MainContract extends Contract {
   @Transaction()
-  public async CreateAsset(ctx: Context, { ...asset }: Asset): Promise<void> {
-    const id = asset.ID;
+  public async CreateDiagnosisAsset(
+    ctx: Context,
+    id: string,
+    type: string,
+    doctorId: string,
+    patientId: string,
+    appointmentId: string,
+    diagnosis: string,
+    testRecommendations: string,
+    prescription: string
+  ): Promise<void> {
+    let d: Diagnosis;
+    d = {
+      ID: id,
+      Type: type,
+      DoctorID: doctorId,
+      PatientID: patientId,
+      AppointmentID: appointmentId,
+      Diagnosis: diagnosis,
+      TestRecommendations: testRecommendations,
+      Prescription: prescription,
+    };
     const exists = await this.AssetExists(ctx, id);
     if (exists) {
       throw new Error(`The asset ${id} already exists`);
     }
-    await ctx.stub.putState(
-      id,
-      Buffer.from(stringify(sortKeysRecursive(asset)))
-    );
+    await ctx.stub.putState(id, Buffer.from(stringify(sortKeysRecursive(d))));
+  }
+
+  @Transaction()
+  public async CreateTransactionAsset(
+    ctx: Context,
+    id: string,
+    type: string,
+    patientId: string,
+    method: string,
+    paymentType: string,
+    mode: string,
+    amount: number,
+    status: string,
+    createdOn: Date,
+    testId?: string,
+    appointmentId?: string
+  ): Promise<void> {
+    let t: T;
+    t = {
+      ID: id,
+      Type: type,
+      PatientID: patientId,
+      AppointmentID: appointmentId && appointmentId,
+      TestID: testId && testId,
+      PaymentType: paymentType,
+      Method: method,
+      Mode: mode,
+      Amount: amount,
+      Status: status,
+      CreatedOn: createdOn,
+    };
+    const exists = await this.AssetExists(ctx, id);
+    if (exists) {
+      throw new Error(`The asset ${id} already exists`);
+    }
+    await ctx.stub.putState(id, Buffer.from(stringify(sortKeysRecursive(t))));
+  }
+
+  @Transaction()
+  public async CreateInsuranceAsset(
+    ctx: Context,
+    id: string,
+    type: string,
+    patientId: string,
+    paymentId: string,
+    status: string
+  ): Promise<void> {
+    let i: Insurance;
+    i = {
+      ID: id,
+      Type: type,
+      PatientID: patientId,
+      PaymentID: paymentId,
+      Status: status,
+    };
+    const exists = await this.AssetExists(ctx, id);
+    if (exists) {
+      throw new Error(`The asset ${id} already exists`);
+    }
+    await ctx.stub.putState(id, Buffer.from(stringify(sortKeysRecursive(i))));
   }
 
   @Transaction(false)

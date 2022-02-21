@@ -30,7 +30,7 @@ export class Transaction {
   public TestID?: string;
 
   @Property()
-  public AppointmentID: string;
+  public AppointmentID?: string;
 
   @Property()
   public CreatedOn: Date;
