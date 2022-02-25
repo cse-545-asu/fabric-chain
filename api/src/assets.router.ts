@@ -1,23 +1,3 @@
-/*
- * SPDX-License-Identifier: Apache-2.0
- *
- * This sample is intended to work with the basic asset transfer
- * chaincode which imposes some constraints on what is possible here.
- *
- * For example,
- *  - There is no validation for Asset IDs
- *  - There are no error codes from the chaincode
- *
- * To avoid timeouts, long running tasks should be decoupled from HTTP request
- * processing
- *
- * Submit transactions can potentially be very long running, especially if the
- * transaction fails and needs to be retried one or more times
- *
- * To allow requests to respond quickly enough, this sample queues submit
- * requests for processing asynchronously and immediately returns 202 Accepted
- */
-
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import { Contract } from 'fabric-network';
@@ -278,8 +258,6 @@ assetsRouter.patch(
     }
 
     const mspId = req.user as string;
-    // const assetId = req.params.assetId;
-    // const newOwner = req.body[0].value;
 
     try {
       const submitQueue = req.app.locals.jobq as Queue;
