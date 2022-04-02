@@ -22,7 +22,7 @@ spec:
             [
               'sh',
               '-c',
-              'cp -r /shared/artifacts/chaincode /src; ls /src; npm install /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
+              'cp -r /shared/artifacts/chaincode /src; ls /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
             ]
           env:
             - name: PACKAGE_NAME
@@ -52,7 +52,7 @@ spec:
             [
               'sh',
               '-c',
-              'cp -r /shared/artifacts/chaincode /src; ls /src; npm install /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
+              'cp -r /shared/artifacts/chaincode /src; ls /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
             ]
           env:
             - name: PACKAGE_NAME
@@ -82,7 +82,7 @@ spec:
             [
               'sh',
               '-c',
-              'cp -r /shared/artifacts/chaincode /src; ls /src; npm install /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
+              'cp -r /shared/artifacts/chaincode /src; ls /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
             ]
           env:
             - name: PACKAGE_NAME
@@ -112,7 +112,7 @@ spec:
             [
               'sh',
               '-c',
-              'cp -r /shared/artifacts/chaincode /src; ls /src; npm install /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
+              'cp -r /shared/artifacts/chaincode /src; ls /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
             ]
           env:
             - name: PACKAGE_NAME
