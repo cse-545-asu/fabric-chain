@@ -23,7 +23,7 @@ spec:
             [
               'sh',
               '-c',
-              'peer chaincode instantiate -o blockchain-orderer:31010 -C ${CHANNEL_NAME} -n ${CHAINCODE_NAME} -v ${CHAINCODE_VERSION} -c ''{"Args":["GetAllAssets"]}''',
+              'peer chaincode instantiate -o blockchain-orderer:31010 -C ${CHANNEL_NAME} -n ${CHAINCODE_NAME} -l node -v ${CHAINCODE_VERSION} -c ''{"Args":["GetAllAssets"]}''',
             ]
           env:
             - name: CHANNEL_NAME
