@@ -56,11 +56,11 @@ spec:
             ]
           env:
             - name: PACKAGE_NAME
-              value: 'basic.tar.gz'
+              value: 'basic'
             - name: PACKAGE_PATH
               value: '/src'
             - name: LABEL
-              value: 'basic_1.0'
+              value: '1.0'
             - name: FABRIC_CFG_PATH
               value: /etc/hyperledger/fabric
             - name: CORE_PEER_MSPCONFIGPATH
@@ -86,11 +86,11 @@ spec:
             ]
           env:
             - name: PACKAGE_NAME
-              value: 'basic.tar.gz'
+              value: 'basic'
             - name: PACKAGE_PATH
               value: '/src'
             - name: LABEL
-              value: 'basic_1.0'
+              value: '1.0'
             - name: FABRIC_CFG_PATH
               value: /etc/hyperledger/fabric
             - name: CORE_PEER_MSPCONFIGPATH
@@ -116,11 +116,11 @@ spec:
             ]
           env:
             - name: PACKAGE_NAME
-              value: 'basic.tar.gz'
+              value: 'basic'
             - name: PACKAGE_PATH
               value: '/src'
             - name: LABEL
-              value: 'basic_1.0'
+              value: '1.0'
             - name: FABRIC_CFG_PATH
               value: /etc/hyperledger/fabric
             - name: CORE_PEER_MSPCONFIGPATH
