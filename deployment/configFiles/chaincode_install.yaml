@@ -22,7 +22,7 @@ spec:
             [
               'sh',
               '-c',
-              'cp -r /shared/artifacts/chaincode /src; ls /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
+              'cp -r /shared/artifacts/chaincode /src; ls /src; peer chaincode package -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -l node -v ${LABEL}; peer chaincode install -l node -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -v ${LABEL}',
             ]
           env:
             - name: PACKAGE_NAME
@@ -30,7 +30,7 @@ spec:
             - name: PACKAGE_PATH
               value: '/src'
             - name: LABEL
-              value: 'basic_1.0'
+              value: '1.0'
             - name: FABRIC_CFG_PATH
               value: /etc/hyperledger/fabric
             - name: CORE_PEER_MSPCONFIGPATH
@@ -52,7 +52,7 @@ spec:
             [
               'sh',
               '-c',
-              'cp -r /shared/artifacts/chaincode /src; ls /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
+              'cp -r /shared/artifacts/chaincode /src; ls /src; peer chaincode package -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -l node -v ${LABEL}; peer chaincode install -l node -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -v ${LABEL}',
             ]
           env:
             - name: PACKAGE_NAME
@@ -82,7 +82,7 @@ spec:
             [
               'sh',
               '-c',
-              'cp -r /shared/artifacts/chaincode /src; ls /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
+              'cp -r /shared/artifacts/chaincode /src; ls /src; peer chaincode package -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -l node -v ${LABEL}; peer chaincode install -l node -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -v ${LABEL}',
             ]
           env:
             - name: PACKAGE_NAME
@@ -112,7 +112,7 @@ spec:
             [
               'sh',
               '-c',
-              'cp -r /shared/artifacts/chaincode /src; ls /src; peer lifecycle chaincode package ${PACKAGE_NAME} --path ${PACKAGE_PATH} --lang node --label ${LABEL}; peer lifecycle chaincode install ${PACKAGE_NAME}',
+              'cp -r /shared/artifacts/chaincode /src; ls /src; peer chaincode package -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -l node -v ${LABEL}; peer chaincode install -l node -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -v ${LABEL}',
             ]
           env:
             - name: PACKAGE_NAME
