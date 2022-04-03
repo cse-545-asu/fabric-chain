@@ -19,7 +19,7 @@ spec:
             path: /var/run/docker.sock
       containers:
         - name: cryptogen
-          image: hyperledger/fabric-tools1.4
+          image: hyperledger/fabric-tools:1.4
           imagePullPolicy: Always
           command:
             [
@@ -31,7 +31,7 @@ spec:
             - mountPath: /shared
               name: sharedvolume
         - name: configtxgen
-          image: hyperledger/fabric-tools1.4
+          image: hyperledger/fabric-tools:1.4
           imagePullPolicy: Always
           command:
             [
