@@ -95,23 +95,6 @@ while [ "${JOBSTATUS}" != "1/1" ]; do
 done
 echo "Copy artifacts job completed"
 
-# Generate channel artifacts using configtx.yaml and then create channel
-echo -e "\nCreating channel transaction artifact and a channel"
-echo "Running: kubectl create -f ${KUBECONFIG_FOLDER}/create_channel.yaml"
-kubectl create -f ${KUBECONFIG_FOLDER}/create_channel.yaml
-
-JOBSTATUS=$(kubectl get jobs |grep createchannel |awk '{print $2}')
-while [ "${JOBSTATUS}" != "1/1" ]; do
-    echo "Waiting for createchannel job to be completed"
-    sleep 1;
-    if [ "$(kubectl get pods | grep createchannel | awk '{print $3}')" == "Error" ]; then
-        echo "Create Channel Failed"
-        exit 1
-    fi
-    JOBSTATUS=$(kubectl get jobs |grep createchannel |awk '{print $2}')
-done
-echo "Create Channel Completed Successfully"
-
 
 # Generate Network artifacts using configtx.yaml and crypto-config.yaml
 echo -e "\nGenerating the required artifacts for Blockchain network"
@@ -157,6 +140,22 @@ echo "Waiting for 15 seconds for peers and orderer to settle"
 sleep 15
 
 
+# Generate channel artifacts using configtx.yaml and then create channel
+echo -e "\nCreating channel transaction artifact and a channel"
+echo "Running: kubectl create -f ${KUBECONFIG_FOLDER}/create_channel.yaml"
+kubectl create -f ${KUBECONFIG_FOLDER}/create_channel.yaml
+
+JOBSTATUS=$(kubectl get jobs |grep createchannel |awk '{print $2}')
+while [ "${JOBSTATUS}" != "1/1" ]; do
+    echo "Waiting for createchannel job to be completed"
+    sleep 1;
+    if [ "$(kubectl get pods | grep createchannel | awk '{print $3}')" == "Error" ]; then
+        echo "Create Channel Failed"
+        exit 1
+    fi
+    JOBSTATUS=$(kubectl get jobs |grep createchannel |awk '{print $2}')
+done
+echo "Create Channel Completed Successfully"
 
 
 # Join all peers on a channel
@@ -196,21 +195,21 @@ echo "Chaincode Install Completed Successfully"
 
 
 # Instantiate chaincode on channel
-# echo -e "\nCreating chaincodeinstantiate job"
-# echo "Running: kubectl create -f ${KUBECONFIG_FOLDER}/chaincode_instantiate.yaml"
-# kubectl create -f ${KUBECONFIG_FOLDER}/chaincode_instantiate.yaml
+echo -e "\nCreating chaincodeinstantiate job"
+echo "Running: kubectl create -f ${KUBECONFIG_FOLDER}/chaincode_instantiate.yaml"
+kubectl create -f ${KUBECONFIG_FOLDER}/chaincode_instantiate.yaml
 
-# JOBSTATUS=$(kubectl get jobs |grep chaincodeinstantiate |awk '{print $2}')
-# while [ "${JOBSTATUS}" != "1/1" ]; do
-#     echo "Waiting for chaincodeinstantiate job to be completed"
-#     sleep 1;
-#     if [ "$(kubectl get pods | grep chaincodeinstantiate | awk '{print $3}')" == "Error" ]; then
-#         echo "Chaincode Instantiation Failed"
-#         exit 1
-#     fi
-#     JOBSTATUS=$(kubectl get jobs |grep chaincodeinstantiate |awk '{print $2}')
-# done
-# echo "Chaincode Instantiation Completed Successfully"
+JOBSTATUS=$(kubectl get jobs |grep chaincodeinstantiate |awk '{print $2}')
+while [ "${JOBSTATUS}" != "1/1" ]; do
+    echo "Waiting for chaincodeinstantiate job to be completed"
+    sleep 1;
+    if [ "$(kubectl get pods | grep chaincodeinstantiate | awk '{print $3}')" == "Error" ]; then
+        echo "Chaincode Instantiation Failed"
+        exit 1
+    fi
+    JOBSTATUS=$(kubectl get jobs |grep chaincodeinstantiate |awk '{print $2}')
+done
+echo "Chaincode Instantiation Completed Successfully"
 
 sleep 15
 echo -e "\nNetwork Setup Completed !!"

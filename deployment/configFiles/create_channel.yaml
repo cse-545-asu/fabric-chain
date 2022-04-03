@@ -16,7 +16,7 @@ spec:
             claimName: shared-pvc
       containers:
         - name: createchanneltx
-          image: hyperledger/fabric-tools:2.4
+          image: hyperledger/fabric-tools:1.4
           imagePullPolicy: Always
           command:
             [
@@ -34,7 +34,7 @@ spec:
               name: sharedvolume
 
         - name: createchannel
-          image: hyperledger/fabric-peer:2.4
+          image: hyperledger/fabric-peer:1.4
           imagePullPolicy: Always
           command:
             [

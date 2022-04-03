@@ -20,7 +20,7 @@ spec:
 
       containers:
         - name: orderer
-          image: hyperledger/fabric-orderer:2.4
+          image: hyperledger/fabric-orderer:1.4
           command:
             [
               'sh',
@@ -88,7 +88,7 @@ spec:
 
       containers:
         - name: ca
-          image: hyperledger/fabric-ca:2.4
+          image: hyperledger/fabric-ca:1.4
           command:
             [
               'sh',
@@ -141,7 +141,7 @@ spec:
 
       containers:
         - name: org1peer1
-          image: hyperledger/fabric-peer:2.4
+          image: hyperledger/fabric-peer:1.4
           command:
             [
               'sh',
@@ -235,7 +235,7 @@ spec:
 
       containers:
         - name: org2peer1
-          image: hyperledger/fabric-peer:2.4
+          image: hyperledger/fabric-peer:1.4
           command:
             [
               'sh',
@@ -330,7 +330,7 @@ spec:
 
       containers:
         - name: org3peer1
-          image: hyperledger/fabric-peer:2.4
+          image: hyperledger/fabric-peer:1.4
           command:
             [
               'sh',
@@ -425,7 +425,7 @@ spec:
 
       containers:
         - name: org4peer1
-          image: hyperledger/fabric-peer:2.4
+          image: hyperledger/fabric-peer:1.4
           command:
             [
               'sh',
