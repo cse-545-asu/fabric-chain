@@ -7,6 +7,23 @@ import { Transaction as T } from './transaction';
 
 export class MainContract extends Contract {
   @Transaction()
+  public async InitLedger(ctx: Context): Promise<void> {
+    const assets = [];
+
+    for (const asset of assets) {
+      asset.docType = 'asset';
+      // example of how to write to world state deterministically
+      // use convetion of alphabetic order
+      // we insert data in alphabetic order using 'json-stringify-deterministic' and 'sort-keys-recursive'
+      // when retrieving data, in any lang, the order of data will be the same and consequently also the corresonding hash
+      await ctx.stub.putState(
+        asset.ID,
+        Buffer.from(stringify(sortKeysRecursive(asset)))
+      );
+      console.info(`Asset ${asset.ID} initialized`);
+    }
+  }
+  @Transaction()
   public async CreateDiagnosisAsset(
     ctx: Context,
     id: string,
