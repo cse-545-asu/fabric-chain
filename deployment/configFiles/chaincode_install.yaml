@@ -22,11 +22,11 @@ spec:
             [
               'sh',
               '-c',
-              'cp -r /shared/artifacts/chaincode /src; ls /src; peer chaincode package -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -l node -v ${LABEL}; peer chaincode install -l node -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -v ${LABEL}',
+              'cp -r /shared/artifacts/chaincode /src; ls /src; peer chaincode package -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -l node -v ${LABEL} ls /src; peer chaincode install -l node -n ${PACKAGE_NAME} -p ${PACKAGE_PATH} -v ${LABEL}',
             ]
           env:
             - name: PACKAGE_NAME
-              value: 'basic.tar.gz'
+              value: 'basic'
             - name: PACKAGE_PATH
               value: '/src'
             - name: LABEL
